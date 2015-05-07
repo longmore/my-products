@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #list li{
+            height: 30px;
+            width: 100px;
+            position: relative;
+            background-color: #f1f1f1;
+            margin-bottom: 5px;
+        }
+        #list li:hover span{
+            text-decoration: underline;
+        }
+        #list li .content{
+            display: none;
+            height: auto;
+            width: 100px;
+            height: 200px;
+            overflow: auto;
+            border: 1px solid red;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            word-break: break-all;
+        }
+        #list li:hover .content{
+            display: block;
+        }
+        #list span{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<ul id="list">
+    <li id="item">
+        <span id="title">一哈哈哈哈</span>
+        <div class = "content">11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</div>
+    </li>
+    <li id="item">
+        <span id="title">二呵呵呵呵呵</span>
+        <div class = "content">222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222</div>
+    </li>
+    <li id="item">
+        <span id="title">三嘿嘿嘿嘿</span>
+        <div class = "content">33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333</div>
+    </li>
+</ul>
+</body>
+</html>

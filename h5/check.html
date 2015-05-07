@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>答题页面</title>
+	<meta name="viewport" content="width=320,user-scalable=no,target-densitydpi=medium-dpi" />
+	<link rel="stylesheet" type="text/css" href="style/basic.css">
+	<link rel="stylesheet" type="text/css" href="style/css.css">
+	<link rel="stylesheet" type="text/css" href="style/mask.css">
+	<link rel="stylesheet" type="text/css" href="style/loading.css">
+	<script type="text/javascript" src="javascript/jquery-2.1.3.min.js"></script>
+</head>
+
+<style>
+	.check_alert{display: none;}
+	.loading{ display: none; }
+</style>
+
+<body>
+	<div class="article">
+		<div class="header">
+			<p>获取身份证验证码<span>关闭</span></p>
+		</div>
+		<div class="content">
+			<p class="requirement">请您在<span id="oSpan"></span>内回答下列3个问题</p>
+			<!-- <dl class="test">
+				<dt>2014年12月至2015年3月期间，您办理的所有正在使用的信用卡中，最高信用额度为多少？</dt>
+				<dd class="clearfix"><p></p><span>2000~3500</span></dd>
+				<dd class="clearfix"><p></p><span>2000~3500</span></dd>
+				<dd class="clearfix"><p></p><span>2000~3500</span></dd>
+				<dd class="clearfix"><p></p><span>2000~3500</span></dd>
+				<dd class="clearfix"><p></p><span>2000~3500</span></dd>
+			</dl> -->	
+		</div>
+		<input type="submit" class="footer" value="提交" id="check_submit">
+
+		<!-- //	当回答问题超时，弹出自定义窗口； -->
+		<div class="check_alert">
+			<div id="mask_1"></div>
+			<div class="alert alert2" id="divAlert2">
+				<div class="aImg"></div>
+				<p class="aTips">已经超时，请重新登录</p>
+				<span id="login_sub">登录</span>
+			</div>
+		</div>	
+		<!-- 页面加载动画 -->
+<div class="loader loading"></div>
+		
+	</div>
+				
+	<script>
+
+
+		$(function(){
+
+			$login_sub = $("#login_sub");
+			$check_alert =$(".check_alert");
+										
+			// ,答题超时时，会弹出弹窗，
+			$login_sub.click(function() {
+				$check_alert.css("display","none");
+			//点击登录之后，弹窗消失，页面跳转至于login.html页面；
+			window.location.href = "login.html";
+			});				
+	
+
+					
+	// get请求试题；
+		$.get("/pbc/user/answerCheck", function(json){
+		if(json.status == 0){
+			console.log(json);
+
+				var questions = json.data.questions;
+				for(var i = 0; i < questions.length; i++){
+				addQuestion(i, questions[i]);
+						}
+					}
+				});
+
+
+		// 提交答题问卷；
+		var $oLoading = $(".loading");
+		var $check_submit = $("#check_submit");
+		
+		$check_submit.click(function(){
+
+			$oLoading.css("display","block");
+
+			var params = {};
+						
+				$("input:hidden").each(function(){
+				var el = $(this);
+				params[el.attr("name")] = el.val();
+				});
+		
+				$.post("/pbc/user/answer", params, function(json){
+					if(json.status == 0){
+						//alert("回答问题成功！");
+						
+					// 回答问题成功，跳转至”申请提交成功并提示再次登录页面；“
+						window.location.href = "tips.html";
+					}else{
+						if(json.message){
+						alert("" + json.message);
+							}
+						}
+					});			
+				});				
+			});
+				
+				function setValue(i,el){
+					$("#answerresult_" + i).val($(el).val());
+				}
+
+				function addQuestion(i, question){
+
+					var html = "";
+
+					html+="<div>";
+
+					html+="<div>";
+
+					html += "<input type=\"hidden\" name=\"questionNo_"+ i +"\" value=\""+ question.questionNo +"\" />";
+					html += "<input type=\"hidden\" name=\"kbaNum_"+ i +"\" value=\""+ question.kbaNum +"\" />";
+					html += "<input type=\"hidden\" name=\"derivativeCode_"+ i +"\" value=\""+ question.derivativeCode +"\" />";
+
+					html += "<input type=\"hidden\" name=\"businessType_"+ i +"\" value=\""+ question.businessType +"\" />";
+
+					html += "<input type=\"hidden\" id=\"answerresult_"+ i +"\" name=\"answerResult_"+ i +"\" value=\"\" />";
+
+					//html += (i + 1) + "." + question.question;
+
+					html += "<input type=\"hidden\" name=\"question_"+ i +"\" value=\""+ question.question +"\" />";
+
+					html += "</div>";
+
+					html+= "<dl class = \"test\">";
+					
+					//这个是标题；
+					html+= "<dt>";
+					html+= (i + 1) + "." + question.question;
+					html+="</dt>"
+
+					//第一个题目
+					html+= "<dd class=\"clearfix\">"
+					html+= "<p><input type=\"radio\" name=\"options_"+ i +"\" value=\"1\" onclick=\"setValue(["+ i +"], this)\" /></p>"
+					html+= "<span>"+question.options1+"</span>"
+					html += "<input type=\"hidden\" name=\"options1_"+ i +"\"  value=\""+ question.options1 +"\" />";
+					html+="</dd>";
+
+					
+					// 第二个题目
+					html+= "<dd class=\"clearfix\">"
+					html+= "<p><input type=\"radio\" name=\"options_"+ i +"\"  value=\"2\" onclick=\"setValue(["+ i +"], this)\" /></p>"
+					html+= "<span>"+question.options2+"</span>"
+					html += "<input type=\"hidden\" name=\"options2_"+ i +"\"  value=\""+ question.options2 +"\" />";
+					html+="</dd>";
+					
+					// 第三个题目
+					html+= "<dd class=\"clearfix\">"
+					html+= "<p><input type=\"radio\" name=\"options_"+ i +"\"  value=\"3\" onclick=\"setValue(["+ i +"], this)\" /></p>"
+					html+= "<span>"+question.options3+"</span>"
+					html += "<input type=\"hidden\" name=\"options3_"+ i +"\"  value=\""+ question.options3 +"\" />";
+					html+="</dd>";
+					
+					// 第四个题目
+					html+= "<dd class=\"clearfix\">"
+					html+= "<p><input type=\"radio\" name=\"options_"+ i +"\"  value=\"4\" onclick=\"setValue(["+ i +"], this)\" /></p>"
+					html+= "<span>"+question.options4+"</span>"
+					html += "<input type=\"hidden\" name=\"options4_"+ i +"\"  value=\""+ question.options4 +"\" />";
+					html+="</dd>";
+					
+					// 第五个题目
+					html+= "<dd class=\"clearfix\">"
+					html+= "<p><input type=\"radio\" name=\"options_"+ i +"\"  value=\"5\" onclick=\"setValue(["+ i +"], this)\" /></p>"
+					html+= "<span>"+question.options5+"</span>"
+					html += "<input type=\"hidden\" name=\"options5_"+ i +"\"  value=\""+ question.options5 +"\" />";
+					html+="</dd>";
+
+					html+="</dl>"
+
+					html+="</div>"
+
+					$(".content").append(html);
+			};
+	
+	</script>
+	
+</body>
+	<script>
+	// 页面倒计时计时器；
+		window.onload = function(){
+
+			var t = 600;
+       		var a = setInterval(fuc, 1000);
+       		var oSpan = document.getElementById("oSpan");
+       		var $check_alert = $(".check_alert");
+		
+       		function fuc(){
+       			
+		        if(t>0){
+		          t--;
+		          var str = Math.floor(t%86400%3600/60)+'分'+t%60+'秒';
+		          //console.log(str);
+		        }else if(t<=0){
+		          t=0;
+		          clearInterval(a);
+		          console.log('时间结束了');
+		          $check_alert.css("display","block");
+		        }
+	           oSpan.innerText = str;
+      		}
+		}
+	</script>
+</html>

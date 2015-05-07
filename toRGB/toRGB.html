@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>十六进制转换成RGB格式的颜色</title>
+    <style type="text/css">
+        #colorText {
+            display: block;
+            float: left;
+            width: auto;
+            margin-right: 10px;
+        }
+
+        #colorShow {
+            display: none;
+            float: left;
+            height: 16px;
+            width: 20px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+
+<input type="text" id="rgb"/>
+<button id="btn">转换</button>
+</body>
+<br>
+<p>转换结果：</p>
+<span id="colorText"></span>
+<span id="colorShow"></span>
+</body>
+</html>
+<script type="text/javascript">
+    function toRGB(color) {
+        var reg = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/g;
+        if (!reg.test(color)) return color;
+        color = color.slice(1);
+        var arr = [], len = color.length;
+        for (var i = 0; i < len; i += len / 3) {
+            arr.push(color.charAt(i) + color.charAt(i + len / 3 - 1));
+        }
+        var rgbStr = arr.map(function (a) {
+            return parseInt(a, 16);
+        });
+        return "rgb(" + rgbStr + ")";
+    }
+    var btn = document.getElementById('btn');
+    var colorText = document.getElementById('colorText');
+    var colorShow = document.getElementById('colorShow');
+    btn.onclick = function () {
+        input = document.getElementById("rgb"),
+                val = input.value.replace(/\s/ig, "");
+        if (!val) return;
+        if (val.indexOf("#") != 0) {
+            val = "#" + val;
+        }
+        var result = toRGB(val);
+        colorText.innerHTML = result;
+        colorShow.style.display = 'block';
+        colorShow.style.backgroundColor = result;
+    }
+</script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>loading</title>
+    <style>
+        .m-loading{
+            position: relative;
+            width: 50px;
+            height: 50px;
+            margin: auto;
+            display: block;
+            border: 1px solid #555;
+            border-radius: 50%;
+            animation:  loading-rond 2s infinite;
+            -webkit-animation:  loading-rond 2s infinite;
+        }
+        .m-loading:after{
+            display: block;
+            position: absolute;
+            top: -4px;
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            background-color: #555;
+            left: 50%;
+            margin-left: -4px;
+            content: '';
+        }
+        @keyframes loading-rond{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        @-webkit-keyframes loading-rond{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <span class="m-loading"></span>
+</body>
+</html>

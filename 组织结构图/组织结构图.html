@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://www.siyonli.com/demo/divcss/2003/tree.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>组织结构图</title> 
+<style class="csscreations">
+/*Now the CSS*/
+* {margin: 0; padding: 0;}
+.tree_box{
+	text-align:center;
+}
+.tree{
+	display:inline-block;
+}
+.tree ul {
+ padding-top: 20px; position: relative;
+ 
+ transition: all 0.5s;
+ -webkit-transition: all 0.5s;
+ -moz-transition: all 0.5s;
+}
+
+.tree li {
+ float: left; text-align: center;
+ list-style-type: none;
+ position: relative;
+ padding: 20px 5px 0 5px;
+ 
+ transition: all 0.5s;
+ -webkit-transition: all 0.5s;
+ -moz-transition: all 0.5s;
+}
+
+/*We will use ::before and ::after to draw the connectors*/
+
+.tree li::before, .tree li::after{
+ content: '';
+ position: absolute; top: 0; right: 50%;
+ border-top: 1px solid #ccc;
+ width:50%; height: 20px;
+}
+.tree li::after{
+ right: auto; left: 50%;
+ border-left: 1px solid #ccc;
+}
+
+/*We need to remove left-right connectors from elements without 
+any siblings*/
+.tree li:only-child::after, .tree li:only-child::before {
+ display: none;
+}
+
+/*Remove space from the top of single children*/
+.tree li:only-child{ padding-top: 0;}
+
+/*Remove left connector from first child and 
+right connector from last child*/
+.tree li:first-child::before, .tree li:last-child::after{
+ border: 0 none;
+}
+/*Adding back the vertical connector to the last nodes*/
+.tree li:last-child::before{
+ border-right: 1px solid #ccc;
+ border-radius: 0 5px 0 0;
+ -webkit-border-radius: 0 5px 0 0;
+ -moz-border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after{
+ border-radius: 5px 0 0 0;
+ -webkit-border-radius: 5px 0 0 0;
+ -moz-border-radius: 5px 0 0 0;
+}
+
+/*Time to add downward connectors from parents*/
+.tree ul ul::before{
+ content: '';
+ position: absolute; top: 0; left: 50%;
+ border-left: 1px solid #ccc;
+ width: 0; height: 20px;
+}
+
+.tree li a{
+ border: 1px solid #ccc;
+ padding: 5px 10px;
+ text-decoration: none;
+ color: #666; cursor: pointer;
+ font-family: arial, verdana, tahoma;
+ font-size: 11px;
+ display: inline-block;
+ 
+ border-radius: 5px;
+ -webkit-border-radius: 5px;
+ -moz-border-radius: 5px;
+ 
+ transition: all 0.5s;
+ -webkit-transition: all 0.5s;
+ -moz-transition: all 0.5s;
+}
+.tree li a input{
+	border:none; width:84px; height:20px;
+}
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+.tree li a:hover, .tree li a:hover+ul li a {
+ background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
+}
+/*Connector styles on hover*/
+.tree li a:hover+ul li::after, 
+.tree li a:hover+ul li::before, 
+.tree li a:hover+ul::before, 
+.tree li a:hover+ul ul::before{
+ border-color:  #94a0b4;
+}
+
+/*Thats all. I hope you enjoyed it.
+Thanks :)*/
+ul,li{ list-style:none; padding:0; margin:0;}
+.siyon_opt_menu{
+	background-color:#fff; border:1px solid #eee; border-radius:5px; font-size:12px; overflow:hidden;
+	z-index:9999; display:none;
+}
+.siyon_opt_menu i{
+	display:block;  border-top:1px solid #eee; cursor:pointer; padding:5px 10px; white-space:nowrap;
+	font-weight:normal; font-style:normal;
+}
+.siyon_opt_menu i:first-child{
+	border:none;
+}
+.siyon_opt_menu i:hover{
+	background-color:#3ac0e6;color:#fff;
+}
+</style>
+</head>
+<body>
+<button></button>
+<div class="tree_box" style="text-align: center;">
+    <div class="tree" style="display: inline-block;"><ul class="top"><li><a>点击操作</a><ul><li><a>123123</a><ul><li><a>123123123</a><ul><li><a>sdaf</a></li><li><a>点击操作</a></li><li><a>点击操作</a></li><li><a>点击操作</a></li></ul></li></ul></li></ul></li></ul></div>
+</div>
+<div style="display:none;">
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fbf1d783442c38919279116257c1b5a5c' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./组织结构图_files/h.js" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=bf1d783442c38919279116257c1b5a5c" target="_blank"><img border="0" src="./组织结构图_files/21.gif" width="20" height="20"></a>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000534986'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1000534986%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1000534986"><a href="http://www.cnzz.com/stat/website.php?web_id=1000534986" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./组织结构图_files/pic.gif"></a></span><script src="./组织结构图_files/z_stat.php" type="text/javascript"></script><script src="./组织结构图_files/core.php" charset="utf-8" type="text/javascript"></script>
+</div>
+
+
+<script type="text/javascript" src="./组织结构图_files/jquery-1.8.2.min.js"></script>
+<script type="text/javascript">
+$.fn.extend({
+	OrganizationalStructure : function(){
+		$(document).bind("click",function(e){
+			e = e || event;
+			var target = e.target;
+			if(target.nodeName!="A" && target.nodeName!="I" || (target.nodeName=="A" && $(target).parents(".tree").length<=0)){
+				$(".siyon_opt_menu").remove();
+			}
+		});
+		return $(this).each(function(index, element) {
+			/* 设置居中样式 */
+            $(this).css("display","inline-block").parent().css("text-align","center");
+			/* 共用添加节点 */
+			var innerHtml = "<ul><li><a>点击操作</a></li></ul>";
+			/* 共用操作菜单 */
+			var opt_menu = "<div class='siyon_opt_menu'><i class='modify'>重命名</i><i class='add_sib'>添加节点</i><i class='add'>添加子节点</i><i class='del'>删除该节点</i><i class='print'>打印</i><i class='cancel'>取消</i></div>";
+			/* 初始父节点 */
+			$(this).html(innerHtml).find("ul").addClass("top");
+			/* 双击重命名 */
+			$(this).find("input").live("focus",function(){
+				$(this).parent("a").siblings(".siyon_opt_menu").remove();
+			});
+			var aclick;
+			$(this).find("a").live("dblclick",function(e){
+				e = e || event;
+				 e.stopPropagation();
+				var obj = $(this);
+				obj.attr("remember",obj.text()==""?"点击操作" : obj.text())
+								.html("<input type='text' />").find("input").focus();
+						obj.find("input").blur(function(){
+							var name = $.trim($(this).val())=="" ? obj.attr("remember") : $(this).val();
+							obj.html(name).removeAttr("remember");
+							})
+				})
+			/* 点击显示操作菜单 */
+			$(this).find("a").live("click",function(){
+					
+					$(".siyon_opt_menu").remove();
+					if($(this).siblings(".siyon_opt_menu").length<=0){
+						var obj = $(this);
+						$(this).after(opt_menu);
+						$(this).siblings(".siyon_opt_menu").css({"position":"absolute"});
+						$(this).siblings(".siyon_opt_menu")
+						.css({"left":($(this).offset().left-$(this).parent("li").offset().left+$(this).outerWidth())+"px",
+						"top":($(this).offset().top-$(this).parent("li").offset().top)+"px"});
+						aclick = setTimeout(function(){
+							obj.siblings(".siyon_opt_menu").show();
+							},200)
+					}
+					else{
+						$(this).siblings(".siyon_opt_menu").remove();
+					}
+					var _this = $(this),sib = $(this).siblings(".siyon_opt_menu");
+					/* 重命名 */
+					sib.find(".modify").click(function(){
+						_this.attr("remember",_this.text()==""?"点击操作" : _this.text())
+								.html("<input type='text' />").find("input").focus();
+						_this.find("input").blur(function(){
+							var name = $.trim($(this).val())=="" ? _this.attr("remember") : $(this).val();
+							_this.html(name).removeAttr("remember");
+							})
+						sib.remove();
+					})
+					/* 删除该节点 */
+					sib.find(".del").click(function(){
+						if(_this.parent("li").siblings().length<=0){
+							_this.parent("li").parent("ul").remove();
+						}
+						else{
+							_this.parent("li").remove();
+						}
+						sib.remove();
+					})
+					/* 添加节点 */
+					sib.find(".add_sib").click(function(){
+						var bool = _this.parent("li").parent("ul").hasClass("top");
+						if(bool){alert("该节点为顶级节点,只能添加子节点");}
+						else{
+							_this.parent("li").parent("ul").append("<li><a>点击操作</a></li>").find("li").last().trigger("dblclick");
+						}
+						sib.remove();
+					})
+					/* 添加子节点 */
+					sib.find(".add").click(function(){
+						if(_this.siblings("ul").length<=0){
+							_this.after(innerHtml);
+							_this.siblings("ul").find("a").first().trigger("dblclick");
+							}
+						else{
+							_this.siblings("ul").append("<li><a>点击操作</a></li>");
+							_this.siblings("ul").find("a").last().trigger("dblclick");
+						}
+						sib.remove();
+					})
+					/* 打印 */
+					sib.find(".print").click(function(){
+						sib.remove();
+						window.print();
+					})
+					/* 取消 */
+					sib.find(".cancel").click(function(){
+						sib.remove();
+					})
+				});			
+        });
+	}
+})
+$(function(){
+	$(".tree").OrganizationalStructure();
+})
+</script><div id="window-resizer-tooltip" style="display: none;"><a href="http://www.siyonli.com/demo/divcss/2003/tree.html#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1366</span> x <span class="tooltipHeight" id="winHeight">728</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1366</span> x <span class="tooltipHeight" id="vpHeight">642</span></div></body></html>

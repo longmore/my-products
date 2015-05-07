@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .cssAnimation{
+            height: 100px;
+            width: 100px;
+            margin: 100px;
+            background-color: green;
+            transition: none;
+            animation-duration：1s;
+            -webkit-animation-fill-mode: both;
+        }
+        @keyframes photo {
+            0% {transform: scale(1);transform: scale(1);}
+            10%, 20% {transform: scale(0.9) rotate(-3deg);}
+            30%, 50%, 70%, 90% {transform: scale(1.1) rotate(3deg);}
+            40%, 60%, 80% {transform: scale(1.1) rotate(-3deg);}
+            100% {transform: scale(1) rotate(0);}
+        }
+        .photo:hover {
+            /*-webkit-animation-name: photo;*/
+            /*animation-name: photo;*/
+            transition: all 1s photo 0;
+            background-color: red;
+        }
+
+        .cssAnimation {
+            -webkit-transition:All 1s ease;
+            -webkit-transform: rotate(4deg) scale(1) skew(1deg) translate(10px);
+        }
+        .cssAnimation:hover{
+            -webkit-transform: rotate(0deg) scale(0.67) skew(1deg) translate(0px);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="cssAnimation"></div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册-身份信息</title>
+	<meta name="viewport" content="width=320,user-scalable=no,target-densitydpi=medium-dpi" />
+	<link rel="stylesheet" type="text/css" href="style/basic.css">
+	<link rel="stylesheet" type="text/css" href="style/css.css">
+	<link rel="stylesheet" type="text/css" href="style/mask.css">
+	<link rel="stylesheet" type="text/css" href="style/loading.css">
+	<script type="text/javascript" src="javascript/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="javascript/select.js"></script>
+	<script type="text/javascript" src="javascript/check.js"></script>
+	<style>
+		.check_alert {
+			display: none;
+		}
+		.loading{ display: none; }
+	</style>
+
+</head>
+<body>
+	
+<div class="article">
+	<div class="header">
+		<p >首次开通<span>关闭</span></p>
+	</div>
+	<div class="registration_content">
+		<div class="registration_tips">
+			<ul class="registration_ui registration_ui1">
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<ul class="registration_circle registration_circle1">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+			<ul class="registration_explain registration_explain1">
+				<li>填写身份信息</li>
+				<li>补充用户资料</li>
+				<li>完成注册</li>
+			</ul>
+		</div>
+		<div class="clearfix"></div>
+
+		<div  class="registration_form">
+		   	<p><input type="text" placeholder="请输入姓名"  id="oName"/></p>
+		   	<p><input type="text" placeholder="请输入身份证号码"  id="oCertNo"/></p>
+			<h2></h2>		  
+		   	<p class="check_code"><input type="text" placeholder="验证码" id="oCode"/><img  id="code_img" src="image/test.png" alt=""></p>
+		   	<h2></h2>
+		   	<input type="submit" class="mobile_btn bg-red"  value="下一步" id="subMit">
+		</div> 
+
+	</div>
+	<!-- 页面加载动画 -->
+<div class="loader loading"></div>
+	
+</div>
+		<script>
+		// 利用$(function(){})加载，获取图片验证码；
+		$(function(){
+			// 选取img节点对象；
+			var $imageCode = $("#code_img");
+			$.get("/pbc/imageRandomCode",function(json){
+				if(json.status ==0){
+					// 将服务器端口返回的 图片路径赋值 给imageRandomCode;
+					var imageRandomCode = json.data.randomCodePath; 
+				    // 将路径加载给img节点 的 src 属性；
+				    $imageCode.attr('src',imageRandomCode);
+				}else{
+					console.log(json.status);
+				}  
+			});
+
+			// 获取弹窗div对象；
+			var $check_alert = $(".check_alert");
+			// 获取弹窗按钮;
+			var $login_sub = $("#login_sub");
+
+			// 关闭弹窗
+			$login_sub.click(function(){
+				$check_alert.css("display","none");
+				  $oLoading.css("display","none");
+			});
+
+			// 表单提交事件
+			// 获取姓名，身份证号码以及code验证码；
+			$subMit = $("#subMit");
+			// 获取滚动条动画节点；
+			var $oLoading = $(".loading");
+			$subMit.click(function(){
+
+			    $oLoading.css("display","block");
+				$oName =  $("#oName").val();
+				$oCertNo = $("#oCertNo").val();
+				$oCode =$("#oCode").val();
+				//console.log($oName);
+				//console.log($oCertNo);
+				//console.log($oCode);
+				//将表单数据提交给 registerFirstStep接口，
+		$.post("/pbc/register/registerFirstStep",{"name":$oName,"certNo":$oCertNo,"code":$oCode},function(json){
+
+					console.log(json);
+					if(json.status == 0 ){
+						// 如果成功，将页面跳转至 ”注册-补充资料“；
+						window.location.href = "regist.html";
+					}else{
+						// 如果失败，打印失败信息；
+						console.log(json.message);
+						// 弹出提出信息；
+						// "目前系统尚未收录您的个人信息，无法进行注册"
+						$check_alert.css("display","block");
+					};
+				});
+			});
+		})
+	</script>
+	<!-- //	当回答问题超时，弹出自定义窗口； -->
+	<div class="check_alert">
+		<div id="mask_1"></div>
+		<div class="alert alert2" id="divAlert2">
+			<div class="aImg"></div>
+			<p class="aTips">目前系统尚未收录您的个人信息，无法进行注册</p>
+			<span id="login_sub">确定</span>
+		</div>
+	</div>			
+	
+</body>
+</html>

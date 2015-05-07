@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body{
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #handler-box{
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        #leftPanel{
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+            background-image: url(images/bg1.jpg);
+            background-position: 0 0;
+            background-repeat: no-repeat;
+        }
+        #rightPanel{
+            height: 100%;
+            left: 50%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            overflow: hidden;
+            background-image: url(images/bg2.jpg);
+            background-position: right 0 top 0;
+            background-repeat: no-repeat;
+        }
+        #handler{
+            height: 100%;
+            width: 8px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            cursor: e-resize;
+            /*visibility: hidden;*/
+        }
+
+        #handler-inner{
+            height: 100%;
+            width: 100%;
+            display: none;
+            /*background-color: #fff;*/
+        }
+        #handler:hover #handler-inner{
+            display: block;
+        }
+        #handler-moving{
+            height: 100%;
+            width: 8px;
+            position: absolute;
+            top: 0;
+            background-color: transparent;
+            border: 1px dashed #fff;
+            cursor: e-resize;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="handler-box">
+        <div id="leftPanel"></div>
+        <div id="rightPanel"></div>
+        <div id = "handler">
+            <div id="handler-inner"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/event.js"></script>
+    <script type="text/javascript" src="js/drag.js"></script>
+</body>
+</html>

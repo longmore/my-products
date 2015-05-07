@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册-补充资料</title>
+	<meta name="viewport" content="width=320,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="style/basic.css">
+	<link rel="stylesheet" type="text/css" href="style/css.css">
+	<link rel="stylesheet" type="text/css" href="style/mask.css">
+	<link rel="stylesheet" type="text/css" href="style/loading.css">
+	<script type="text/javascript" src="javascript/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="javascript/check.js"></script>
+	<style>
+		.check_alert{display: none;}
+		.loading{ display: none; }
+	</style>
+</head>
+<body>
+	<div class="article">
+		<div class="header">
+			<p >首次开通<span >关闭</span></p>
+		</div>
+		<div class="registration_content">
+			<div class="registration_tips">
+				<ul class="registration_ui registration_ui2">
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<ul class="registration_circle registration_circle2">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+				</ul>
+				<ul class="registration_explain registration_explain2">
+					<li>填写身份信息</li>
+					<li>补充用户资料</li>
+					<li>完成注册</li>
+				</ul>
+			</div>
+				<div class="clearfix"></div>
+
+			<div  class="registration_form">
+				<div id="registerForm">
+					<input type="hidden" name="tcId"  id="tcId"/> 
+				   	<p><input type="text" placeholder="请输入登录名" id="username" name="loginName"></p>
+				   	<p class="check_tips"><i class="icon-warning"><img src='image/warning.png'></i>提示：登录名由6-16数字、字母组成，不含特殊字符、空格等</p>
+
+				   	<p><input type="password" placeholder="请设置登录密码" id='password' name="password"></p>
+				   	<p class="check_tips"><i class="icon-warning"><img src='image/warning.png'></i>提示：密码由6-16数字、字母组成，需同时包含数字和字母</p>
+
+				   	<p><input type="password" placeholder="请确认登录密码" id='password2'></p>
+				   	<p class="check_tips"><i class="icon-warning"><img src='image/warning.png'></i><span>两次输入密码不一致</span></p>
+
+				   	<p><input type="text" id="email" placeholder="请输入电子邮箱" name="email"></p>
+				   	<p class="check_tips"><i class="icon-warning"><img src='image/warning.png'></i><span>提示：请输入正确的邮箱</span></p>
+
+				   	<p  class="check_code" ><input type="text" placeholder="请输入手机号码" name="mobileTel" id="verifyCode"><span id="actCode">获取动态码</span></p>
+				   	<p class="check_tips"><i class="icon-warning"><img src='image/warning.png'></i><span>提示：请输入正确的手机号码</span></p>
+
+				   	<p><input type="text" id="tel" placeholder="动态码" name="verifyCode"></p>
+				   	<p class="check_tips"><i class="icon-warning"><img src='image/warning.png'></i><span>动态码不正确</span></p>
+				   	
+			   	</div>
+			   	<input type="submit" id='submitBtn' class="mobile_btn bg-red"  value="提交">
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+		$(function(){
+			// 获取手机号码；
+			
+			// 获取dom节点对象
+			var $actCode = $("#actCode");
+			
+			var $login_sub = $("#login_sub");
+
+			var $submitBtn = $("#submitBtn");
+				
+			// 点击$actCode 获取验证码；
+			$actCode.click(function(){
+
+				$verifyCode = $("#verifyCode").val();
+				$tcId = $("#tcId").val();
+				$.get("/pbc/getAcvitaveCode",{"mobileTel":$verifyCode},function(json){
+					
+					if(json.status == 0){
+						console.log(json);
+						console.log('获取验证码成功');
+						$tcId = json.data.tcId;
+						console.log($tcId);
+					}else{
+
+						console.log(json.message);
+					}
+
+				})
+			});
+
+			// 向服务器提交表单信息；
+			$submitBtn.click(function(){
+				
+				$oLoading.css("display","block");
+				registerSecondStep();
+			});
+
+			// 当完成注册后，点击确定按钮，跳转至登录页面
+			$login_sub.click(function(){
+					    $oLoading.css("display","none");
+						window.location.href = "login.html";
+					});
+		});
+
+		//  向服务器返回表单数据；
+		function registerSecondStep(){
+			var tcId = $("#tcId").val();
+			var loginName = $("input[name=loginName]").val();
+			var password = $("input[name=password]").val();
+			var email = $("input[name=email]").val();
+			var mobileTel = $("input[name=mobileTel]").val();
+			var verifyCode = $("input[name=verifyCode]").val();
+
+
+
+			// 获取弹窗对象和登录按钮对象；
+			var $mask_alert = $("#divAlert2");
+			// 获取进度条动画；
+			var $oLoading = $(".loading");
+			
+			
+			$.post("/pbc/register/registerSecondStep", {
+				tcId: tcId,
+				loginName: loginName,
+				password: password,
+				email: email,
+				mobileTel: mobileTel,
+				verifyCode: verifyCode
+			}, function(json){
+				if(json.status == 0){
+					// 完成注册
+					// 显示一个弹出窗口，点击窗口。跳至登录页面
+
+					$mask_alert.css("display","block");
+					$oLoading.css("display","none");
+
+				}else if(json.message){
+					alert("" + json.message);
+					$oLoading.css("display","none");
+					
+				}
+			});
+		}
+
+
+
+	</script>
+
+	<!-- 	// 当数据提交成功的时候，弹出自定义窗口； -->
+		<div class="check_alert">
+			<div id="mask_1"></div>
+			<div class="alert alert2" id="divAlert2">
+				<div class="aImg"></div>
+				<p class="aTips">您已经完成注册，请重新登录并获取征信报告</p>
+				<span id="login_sub">登录</span>
+			</div>
+		</div>	
+
+</body>
+
+	
+</html>

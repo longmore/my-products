@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>非正常状态查询首页</title>
+	<meta name="viewport" content="width=320,user-scalable=no,target-densitydpi=medium-dpi" />
+	<link rel="stylesheet" type="text/css" href="style/basic.css">
+	<link rel="stylesheet" type="text/css" href="style/css.css">
+	<link rel="stylesheet" type="text/css" href="style/mask.css">
+	<link rel="stylesheet" type="text/css" href="style/loading.css">
+	<script type="text/javascript" src="javascript/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="javascript/select.js"></script>
+	<script type="text/javascript" src="javascript/check.js"></script>
+	<style>
+		.check_alert {display: none}
+		.loading{ display: none; }
+	</style>
+
+</head>
+
+<body>
+	<div class="article">
+		<div class="header">
+			<p >非正常状态查询首页<span >关闭</span></p>
+		</div>
+		<div class="registration_content">
+			<div class="registration_tips">
+				<p class="people_title">请到<span>中国人民银行征信中心官网</span>提交申请并获取身份验证码，详情请参照《征信报告查询指导》</p>
+			</div>
+			<div class="registration_form">
+				<div id="registerForm">
+				   	<p><input type="text" placeholder="请输入登录名" id="oName"></p>
+				   	<p class="check_tips"></p>
+				   	<p><input type="text" placeholder="请设置登录密码" id="oPassword"></p>
+				   	<p class="check_tips"></p>
+				   	<p><input type="password"  placeholder="请输入身份验证码" id="oCode"></p>
+				   	<p class="check_tips"></p> 
+			   	</div>
+			   	<div class="login_help">
+			   		<span class="zhengxin_report"><a href="reportSelectIndex.html">征信报告查询指导</a></span>
+			   	</div>
+			   	<input type="button"  class="mobile_btn bg-red" id="oButton"  value="提交">
+			</div>
+		</div>
+		<!-- 页面加载动画 -->
+<div class="loader loading"></div>
+	</div>
+
+
+	<!-- //	当回答问题超时，弹出自定义窗口； -->
+	<div class="check_alert">
+		<div id="mask_1"></div>
+		<div class="alert alert2" id="divAlert2">
+			<div class="aImg"></div>
+			<p class="aTips">申请已提交，我们会尽快将审核结果通知您，请耐心等待</p>
+			<span id="login_sub">提交</span>
+		</div>
+	</div>	
+</body>
+
+<script>
+	$(function(){
+		// 获取弹窗的两个按钮；
+		var $check_alert = $(".check_alert");
+		var $login_sub = $("#login_sub");
+		// 点击确定按钮，关闭弹窗；
+		$login_sub.click(function(){
+			$('.check_alert').css("display","none");
+		});
+
+		// 获取表单的value值；
+		var $oButton = $("#oButton");
+		var $oName = $("#oName").val();
+		var $oPassword = $("#oPassword").val();
+		var $oCode = $("#oCode").val();
+
+
+		$oButton.click(function(){
+
+			$oName = $oName.val();
+		 	$oPassword = $oPassword.val();
+			$oCode = $oCode.val();
+
+			$.post("/pbc/user/unusualReport",{"loginname":$oName,"password":$oPassword,"code":$oCode},function(json){
+			if(json.status == 0){
+				$(".check_alert").css("display","block");
+			}else{
+				console.log(json.messaage);
+			}
+		})
+	});
+
+		// 非正常获取信用报告
+		
+	})
+</script>
+</html>
