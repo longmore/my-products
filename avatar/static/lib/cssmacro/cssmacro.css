@@ -1,0 +1,404 @@
+/**
+ * @fileoverview 重置元素
+ * @author hongshun
+ * @vision 1.0.0
+ */
+/**
+ * .fis-reset-box
+ * @description 将容器边距边框都设置为0
+ */
+/**
+ * @fileoverview hacks针对不同的浏览器去写不同的CSS，让它能够同时兼容不同的浏览器
+ * @author hongshun
+ * @vision 1.0.0
+ */
+/**
+ * .fis-ie6-hack
+ * @description IE6 hack
+ * @param @property 属性名称
+ * @param @value 其他浏览器属性值
+ * @param @ie6Value ie6属性值
+ */
+/**
+ * .fis-has-layout
+ * @description 为IE元素添加hasLayout
+ */
+/**
+ * @fileoverview float浮动(解决IE5/IE6双margin问题)
+ * @author hongshun
+ * @vision 1.0.0
+ */
+/**
+ * .fis-float
+ * @description 浮动(解决IE5/IE6双margin问题)
+ * @param [@side=left] 浮动方向
+ */
+/**
+ * .fis-float-left
+ * @description 左浮动
+ */
+/**
+ * .fis-float-right
+ * @description 右浮动
+ */
+/**
+ * @fileoverview 清除浮动
+ * @author hongshun guizi
+ * @vision 1.0.0
+ */
+/**
+ * .fis-clearfix
+ * @description 清除浮动(不需要添加额外标签)
+ */
+/**
+ * .fis-clear
+ * @description 清除浮动(需要添加空标签)
+ */
+/**
+ * @fileoverview CSS3相关
+ * @author hongshun guizi
+ * @vision 1.0.0
+ */
+/**
+ * .fis-opacity
+ * @description 透明度(support IE6+、Firefox 3.5+、Safari、Chrome、Opera)
+ * @param [@opacity=100] 透明度值
+ */
+/**
+ * .fis-content-columns
+ * @description 设置多列布局的列宽和列数属性(support IE10+、Firefox 3.5+、Safari、Chrome、Opera)
+ * @param @columnCount 列数
+ * @param [@columnGap=20px] 列间隔
+ */
+/**
+ * .fis-background-clip
+ * @description 背景的裁剪区域(support IE9+、Firefox 3.5+、Safari、Chrome、Opera)
+ * @param @clip 裁剪位置(border-box | padding-box | content-box | no-clip)
+ */
+/**
+ * .fis-background-origin
+ * @description 背景图片的位置定位(support IE9+、Firefox 3.5+、Safari、Chrome、Opera)
+ * @param @origin 定位位置(border-box | padding-box | content-box)
+ */
+/**
+ * .fis-gradient-horizontal
+ * @description 背景水平渐变(support IE8+、Firefox 3.5+、Safari、Chrome、Opera)
+ * @param [@startColor=#555] 颜色渐变初始值
+ * @param [@endColor=#333] 颜色渐变终值
+ */
+/**
+ * .fis-gradient-vertical
+ * @description 背景垂直渐变(support IE8+、Firefox 3.5+、Safari、Chrome、Opera)
+ * @param [@startColor=#555] 颜色渐变初始值
+ * @param [@endColor=#333] 颜色渐变终值
+ */
+/**
+ * .fis-gradient-directional
+ * @description 背景方向渐变(support Firefox 3.5+、Safari、Chrome、Opera)
+ * @param [@startColor=#555] 颜色渐变初始值
+ * @param [@endColor=#333] 颜色渐变终值
+ * @param [@deg=45deg] 渐变方向
+ */
+/**
+ * .fis-gradient-vertical-three-colors
+ * @description 背景三色垂直渐变(support IE8+、Firefox 3.5+、Safari、Chrome、Opera)
+ * @param [@startColor=#00b3ee] 颜色渐变初始值
+ * @param [@midColor=#7a43b6] 颜色渐变中值
+ * @param [@colorStop=50%] 颜色中值渐变位置
+ * @param [@endColor=#333] 颜色渐变终值
+ */
+/**
+ * .fis-inline-block
+ * @description inline-block展示(兼容inline和block元素)
+ */
+/**
+ * .fis-min-height
+ * @description 最小高度
+ * @param [@value] 最小高度值
+ */
+/**
+ * .fis-min-width
+ * @description 最小宽度
+ * @param [@value] 最小宽度值
+ */
+/**
+ * .fis-border-radius
+ * @description 圆角(support IE9+、Firefox 3.5+、Safari、Chrome、Opera)
+ * @param [@radius=5px] 圆角半径
+ */
+/**
+ * .fis-box-shadow
+ * @description 阴影(support Firefox 3.5+、Safari、Chrome、Opera)
+ * @param @shadow 阴影参数(水平偏移值 | 垂直偏移值 | 阴影模糊值 | 阴影颜色)
+ */
+/**
+ * .fis-transition
+ * @description 过渡变换
+ * @param @transition 变换参数
+ */
+/**
+ * @fileoverview 各种链接样式定制
+ * @author hongshun guizi
+ * @vision 1.0.0
+ */
+/**
+ * .fis-hover-link
+ * @description 默认链接无下划线，悬浮出现下划线
+ */
+/**
+ * .fis-link-bg
+ * @description 链接悬浮背景变色
+ * @param @bgColor 悬浮链接背景色
+ */
+/**
+ * .fis-link-colors
+ * @description 链接颜色样式设置
+ * @param @normal 默认链接颜色
+ * @param @hover 鼠标悬浮时链接颜色
+ * @param @active 点击时链接颜色
+ * @param @visited 访问过的链接颜色
+ * @param @focus tab键获取焦点时链接颜色
+ */
+/**
+ * .fis-unstyled-link
+ * @description 继承父元素的链接样式(不兼容IE6/7)
+ */
+/**
+ * @fileoverview 各种列表样式定制
+ * @author hongshun guizi
+ * @vision 1.0.0
+ */
+/**
+ * .fis-no-bullet
+ * @description 清除列表样式(针对li标签)
+ */
+/**
+ * .fis-no-bullets
+ * @description 清除列表样式(针对ul、ol标签)
+ */
+/**
+ * .fis-horizontal-list
+ * @description 水平列表
+ * @param [@padding=5px] 列表内左右边距
+ */
+/**
+ * .fis-tab-list
+ * @description 水平tab列表
+ * @param [@padding=5px] tab标签左右边距
+ * @param [@borderWidth=1px] tab边框宽度
+ * @param [@borderColor=#000] tab边框颜色
+ * @param [@bgColor=#fff] 选中tab背景色
+ */
+/**
+ * .fis-inline-block-list
+ * @description inline-block列表
+ * @param [@padding=4px] 列表内左右边距
+ */
+/**
+ * .fis-inline-list
+ * @description inline列表
+ */
+/**
+ * @fileoverview 各种表格样式定制
+ * @author hongshun guizi
+ * @vision 1.0.0
+ */
+/**
+ * .fis-alternating-rows-and-columns
+ * @description 表格条纹样式
+ * @param @evenColor 偶数行背景颜色
+ * @param @oddColor 奇数行背景颜色
+ * @param [@headerColor=white] 表头背景颜色
+ * @param [@footerColor=white] 表格底部背景颜色
+ */
+/**
+ * .fis-outer-table-borders
+ * @description 表格外边框
+ * @param [@width=2px] 宽度
+ * @param [@color=black] 颜色
+ */
+/**
+ * .fis-inner-table-borders
+ * @description 表格内边框
+ * @param [@width=2px] 宽度
+ * @param [@color=black] 颜色
+ */
+/**
+ * @fileoverview 各种文本样式定制
+ * @author hongshun
+ * @vision 1.0.0
+ */
+/**
+ * .fis-nowrap
+ * @description 文本不折行
+ */
+/**
+ * .fis-wrap
+ * @description 文本折行
+ */
+/**
+ * @fileoverview 各种定制布局样式
+ * @author hongshun guizi
+ * @vision 1.0.0
+ */
+/**
+ * .fis-container
+ * @description 设置容器
+ * @param [@columns=24] 列数
+ * @param [@gridWidth=30px] 列宽
+ * @param [@gridMargin=10px] 右边距
+ */
+/**
+ * .fis-column
+ * @description 设置列(左浮动)
+ * @param [@n=1] 占用的列数
+ * @param [@gridWidth=30px] 列宽
+ * @param [@gridMargin=10px] 右边距
+ */
+/**
+ * .fis-column-ext
+ * @description 设置列(右浮动)
+ * @param [@n=1] 占用的列数
+ * @param [@gridWidth=30px] 列宽
+ * @param [@gridMargin=10px] 右边距
+ */
+/**
+ * .fis-last
+ * @description 设置列为最后一列
+ */
+/**
+ * .fis-prepend
+ * @description 在左侧插入空白
+ * @param [@n=1] 占用的列数
+ * @param [@gridWidth=30px] 列宽
+ * @param [@gridMargin=10px] 右边距
+ */
+/**
+ * .fis-append
+ * @description 在右侧插入空白
+ * @param [@n=1] 占用的列数
+ * @param [@gridWidth=30px] 列宽
+ * @param [@gridMargin=10px] 右边距
+ */
+/**
+ * .fis-offset-left
+ * @description 容器左margin
+ * @param [@n=2] 占用的列数
+ * @param [@gridWidth=10px] 列宽
+ * @param [@gridMargin=0] 右边距
+ */
+/**
+ * .fis-offset-right
+ * @description 容器右margin
+ * @param [@n=2] 占用的列数
+ * @param [@gridWidth=10px] 列宽
+ * @param [@gridMargin=0] 右边距
+ */
+/**
+ * .fis-grid-percent
+ * @description 百分比容器宽度
+ * @param [@n=2] 分子
+ * @param [@all=5] 分母
+ */
+/**
+ * @fileoverview 各种定制布局样式
+ * @author hongshun guizi
+ * @vision 1.0.0
+ */
+/**
+ * .fis-center-block
+ * @description 容器居中
+ */
+/**
+ * .fis-fixed-container
+ * @description 居中布局（清除浮动）
+ */
+/**
+ * .fis-fixed-container
+ * @description 流动布局（边栏左浮动）
+ * @param [@minWidth=940px] 最小容器宽度
+ * @param [@sidebarWidth=220px] 边栏宽度
+ * @param [@padding=20px] 容器边距
+ */
+/**
+ * .fis-layout-fluid
+ * @description 流动布局（边栏可定制浮动方式）
+ * @param [@minWidth=940px] 最小容器宽度
+ * @param [@sidebarWidth=220px] 边栏宽度
+ * @param [@sidebarFloat=left] 定栏浮动方式，默认左浮动
+ */
+/**
+ * .fis-vertical-single
+ * @description 单行文字垂直居中
+ * @param height 文字行高
+ */
+/**
+ * .fis-vertical-fixed
+ * @description 定高容器文字/图片垂直居中
+ * @param [@height=100px] 容器高度
+ */
+/**
+ * .fis-vertical-adapted
+ * @description 自适应容器文字垂直居中
+ * @param [@padding=20px] 文字与容器上下间距
+ */
+/**
+ * @fileoverview 各种字体样式定制
+ * @author hongshun
+ * @vision 1.0.0
+ */
+/**
+ * .fis-normal-text
+ * @description 标准字体
+ * @param [@color=#222] 字体颜色
+ */
+/**
+ * .fis-fixed-width-text
+ * @description 固定高宽字体
+ */
+/**
+ * .fis-header-text
+ * @description 标题字体
+ * @param [@color=#111] 字体颜色
+ */
+/**
+ * .fis-quiet-color
+ * @description 暗色调颜色
+ * @param [@color=#666] 颜色
+ */
+/**
+ * .fis-loud-color
+ * @description 亮色调颜色
+ * @param [@color=#000] 颜色
+ */
+/**
+ * @fileoverview 按钮组件
+ * @author guizi
+ * @vision 1.0.0
+ */
+/**
+ * .fis-button-slide
+ * @description 背景渐变滑动门按钮
+ * @param [@height=32px] 按钮高度
+ * @param [@padding=20px] 按钮文字两边内边距
+ */
+/**
+ * @fileoverview 边框组件
+ * @author guizi
+ * @vision 1.0.0
+ */
+/**
+ * .fis-mod-round
+ * @description 圆角边框
+ * @params [@roundSize=3px] 圆角半径
+ */
+/**
+ * @fileoverview 图标组件
+ * @author guizi
+ * @vision 1.0.0
+ */
+/**
+ * .fis-icon
+ * @description 长宽相等的图标
+ * @params [@size=16px] icon的长宽
+ */
